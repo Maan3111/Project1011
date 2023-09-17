@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakhvir SIngh ਮਾਨ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #app {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Semi-Truck Fuel Calculator(ਮਾਨ TRUCKING)</h1>
+        <label for="miles">Miles Driven:</label>
+        <input type="number" id="miles" placeholder="Enter miles">
+        <label for="fuelEfficiency">Fuel Efficiency (MPG):</label>
+        <input type="number" id="fuelEfficiency" placeholder="Enter MPG">
+        <label for="withTrailer">With Trailer:</label>
+        <input type="checkbox" id="withTrailer">
+        <button onclick="calculateFuelConsumption()">Calculate</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateFuelConsumption() {
+            const milesInput = parseFloat(document.getElementById('miles').value);
+            const fuelEfficiencyInput = parseFloat(document.getElementById('fuelEfficiency').value);
+            const withTrailerInput = document.getElementById('withTrailer').checked;
+
+            let fuelConsumption;
+            
+            if (isNaN(milesInput) || isNaN(fuelEfficiencyInput)) {
+                document.getElementById('result').textContent = "Please enter valid numbers.";
+                return;
+            }
+
+            if (withTrailerInput) {
+                fuelConsumption = milesInput / fuelEfficiencyInput;
+            } else {
+                // Adjust fuel efficiency for semi-trucks without trailers
+                fuelConsumption = (milesInput / fuelEfficiencyInput) * 1.2;
+            }
+
+            document.getElementById('result').textContent = `Fuel consumption: ${fuelConsumption.toFixed(2)} gallons`;
+        }
+    </script>
+</body>
+</html>
